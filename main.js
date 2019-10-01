@@ -1,4 +1,4 @@
-let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5 });
+let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false, scanPeriod: 5 });
 scanner.addListener('scan', function (content) {
   var token = content.substr(0, 40);
   console.log(token);
@@ -8,6 +8,7 @@ scanner.addListener('scan', function (content) {
   console.log(output);
   var outputDiv = document.getElementById('output');
   outputDiv.innerHTML = output;
+  alert(token + '\n' + output);
 });
 
 Instascan.Camera.getCameras().then(function (cameras) {
