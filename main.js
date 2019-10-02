@@ -2,12 +2,10 @@ let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),
 scanner.addListener('scan', function (content) {
   var token = content.substr(0, 40);
   console.log(token);
-  var tokenDiv = document.getElementById('token');
-  tokenDiv.innerHTML = token;
+  document.getElementById('token').innerHTML = token; // XSS me
   var output = httpGet('https://script.google.com/macros/s/AKfycbwIy1RuKcGxtUI0caTyLC9LZia6m3gVdKrPXQAYU8cw7el_MBs/exec?token=' + token);
   console.log(output);
-  var outputDiv = document.getElementById('output');
-  outputDiv.innerHTML = output;
+  document.getElementById('output').innerText = output;
   alert(token + '\n' + output);
 });
 
